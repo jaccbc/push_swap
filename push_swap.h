@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:57:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/01 23:52:11 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/02 02:13:46 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_stack		*last_node(t_stack *node);
 void		create_stack(t_stack **stack_a, int n);
 void		free_stack(t_stack **node);
 long long	ft_atol(char *number);
+bool		numb_repeat(t_stack *node);
 void		sa(t_stack **node);
 void		sb(t_stack **node);
 void		ss(t_stack **a, t_stack **b);

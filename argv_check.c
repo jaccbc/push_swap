@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/01 23:54:49 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/02 11:04:29 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -47,7 +47,10 @@ static bool	check_quote(char **argv)
 	while (argv[1][i])
 	{
 		if (argv[1][i] == '-')
-			i++;
+		{
+			if (argv[1][++i] == '0')
+				return (false);
+		}
 		while (ft_isdigit(argv[1][i]))
 			i++;
 		if (argv[1][i] == ' ')

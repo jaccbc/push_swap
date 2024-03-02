@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:50:19 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/01 19:49:33 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/02 02:51:09 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -29,4 +29,29 @@ long long	ft_atol(char *number)
 		number++;
 	}
 	return (n * x);
+}
+
+bool	numb_repeat(t_stack *stack_a)
+{
+	t_stack	*check;
+	t_stack	*repeat;
+
+	if (stack_a == NULL)
+		return (false);
+	check = stack_a;
+	while (check)
+	{
+		repeat = stack_a;
+		while (repeat->next)
+		{
+			if (check != repeat)
+			{
+				if (check->numb == repeat->numb)
+					return (true);
+			}
+			repeat = repeat->next;
+		}
+		check = check->next;
+	}
+	return (false);
 }

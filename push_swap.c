@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/01 23:58:44 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/02 02:48:49 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
 			while (argc > i)
 				create_stack(stack_a, ft_atol(argv[i++]));
 	}
+	if (numb_repeat(*stack_a))
+		write(2, "Error\n", 6);
 	free_stack(stack_a);
 	free(stack_a);
 	return (0);
