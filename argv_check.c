@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/02 22:47:59 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/03 01:01:08 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -88,7 +88,7 @@ static bool	check_quote_int(char **argv, t_stack **stack_a)
 	return (result);
 }
 
-bool	argv_check(int argc, char **argv, t_stack **stack_a)
+bool	argv_check(int argc, char **argv, t_stack **node)
 {
 	bool	result;
 	int		i;
@@ -98,7 +98,7 @@ bool	argv_check(int argc, char **argv, t_stack **stack_a)
 	{
 		result = check_quote(argv);
 		if (result)
-			result = check_quote_int(argv, stack_a);
+			result = check_quote_int(argv, node);
 	}
 	else if (argc > 2)
 	{
