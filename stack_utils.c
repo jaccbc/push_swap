@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:46:24 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/02 21:30:19 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:56:50 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -34,33 +34,33 @@ t_stack	*last_node(t_stack *node)
 	return (node);
 }
 
-void	free_stack(t_stack **node_stack)
+void	free_stack(t_stack **node)
 {
 	t_stack	*linx;
 
-	linx = *node_stack;
+	linx = *node;
 	while (linx)
 	{
-		*node_stack = (*node_stack)->next;
+		*node = (*node)->next;
 		free(linx);
-		linx = *node_stack;
+		linx = *node;
 	}
 }
 
-void	create_stack(t_stack **node_stack, int n)
+void	create_stack(t_stack **node, int n)
 {
 	t_stack	*new;
 	t_stack	*last;
 
 	new = create_node(n);
-	if (*node_stack == NULL)
+	if (*node == NULL)
 	{
-		*node_stack = new;
+		*node = new;
 		return ;
 	}
 	if (new)
 	{
-		last = last_node(*node_stack);
+		last = last_node(*node);
 		last->next = new;
 		new->prev = last;
 	}

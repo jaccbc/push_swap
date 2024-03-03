@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:57:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/02 21:33:02 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:57:10 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		rra(t_stack **node);
 void		rrb(t_stack **node);
 void		rrr(t_stack **a, t_stack **b);
 t_stack		*last_node(t_stack *node);
-void		create_stack(t_stack **node_stack, int n);
-void		free_stack(t_stack **node_stack);
+void		create_stack(t_stack **node, int n);
+void		free_stack(t_stack **node);
 long long	ft_atol(char *number);
 bool		numb_repeat(t_stack *stack_a);
 bool		argv_check(int argc, char **argv, t_stack **stack_a);
