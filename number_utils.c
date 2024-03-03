@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:50:19 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/02 02:51:09 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/03 00:34:57 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -42,13 +42,11 @@ bool	numb_repeat(t_stack *stack_a)
 	while (check)
 	{
 		repeat = stack_a;
-		while (repeat->next)
+		while (repeat)
 		{
 			if (check != repeat)
-			{
 				if (check->numb == repeat->numb)
 					return (true);
-			}
 			repeat = repeat->next;
 		}
 		check = check->next;

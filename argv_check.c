@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/02 11:04:29 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/02 22:47:59 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -28,12 +28,13 @@ static bool	check_unquote(int argc, char **argv)
 	{
 		i = 0;
 		if (argv[c][i] == '-')
-			i++;
-		while (argv[c][i])
 		{
-			if (ft_isdigit(argv[c][i++]) == 0)
+			i++;
+			if (argv[c][i] == '0')
 				return (false);
 		}
+		while (ft_isdigit(argv[c][i]))
+			i++;
 		c++;
 	}
 	return (true);
@@ -107,6 +108,6 @@ bool	argv_check(int argc, char **argv, t_stack **stack_a)
 				result = check_int(ft_atol(argv[i++]));
 	}
 	if (result == false)
-		write(2, "Error\n", 6);
+		write(2, "Error argv_check\n", 17);
 	return (result);
 }
