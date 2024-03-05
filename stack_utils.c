@@ -6,12 +6,12 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:46:24 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/03 00:56:50 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/05 03:46:39 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static t_stack	*create_node(int n)
+t_stack	*create_node(int n)
 {
 	t_stack	*new;
 
@@ -34,34 +34,50 @@ t_stack	*last_node(t_stack *node)
 	return (node);
 }
 
+size_t	stack_size(t_stack *node)
+{
+	size_t	size;
+
+	size = 0;
+	while (node)
+	{
+		size++;
+		node = node->next;
+	}
+	return (size);
+}
+
 void	free_stack(t_stack **node)
 {
 	t_stack	*linx;
 
-	linx = *node;
-	while (linx)
+	while (*node)
 	{
+		linx = *node;
 		*node = (*node)->next;
 		free(linx);
-		linx = *node;
 	}
+	free(node);
 }
 
-void	create_stack(t_stack **node, int n)
+void	create_stack(t_stack **node, char **nums, int i)
 {
 	t_stack	*new;
 	t_stack	*last;
 
-	new = create_node(n);
-	if (*node == NULL)
+	last = create_node(ft_atoi(nums[i++]));
+	if (last)
 	{
-		*node = new;
-		return ;
-	}
-	if (new)
-	{
-		last = last_node(*node);
-		last->next = new;
-		new->prev = last;
+		*node = last;
+		while (nums[i])
+		{
+			new = create_node(ft_atoi(nums[i++]));
+			if (new)
+			{
+				last->next = new;
+				new->prev = last;
+				last = last->next;
+			}
+		}
 	}
 }

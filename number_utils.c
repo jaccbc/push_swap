@@ -6,42 +6,49 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:50:19 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/03 00:34:57 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:04:22 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-long long	ft_atol(char *number)
+bool	check_int(long long num)
+{
+	if (num <= INT_MAX && num >= INT_MIN)
+		return (true);
+	return (false);
+}
+
+long long	ft_atol(char *num)
 {
 	long long	n;
 	long long	x;
 
 	x = 1;
-	if (*number == '-')
+	if (*num == '-')
 	{
 		x *= -1;
-		number++;
+		num++;
 	}
 	n = 0;
-	while (*number >= '0' && *number <= '9')
+	while (*num >= '0' && *num <= '9')
 	{
-		n = n * 10 + (*number - '0');
-		number++;
+		n = n * 10 + (*num - '0');
+		num++;
 	}
 	return (n * x);
 }
 
-bool	numb_repeat(t_stack *stack_a)
+bool	num_repeat(t_stack *a)
 {
 	t_stack	*check;
 	t_stack	*repeat;
 
-	if (stack_a == NULL)
+	if (a == NULL)
 		return (false);
-	check = stack_a;
+	check = a;
 	while (check)
 	{
-		repeat = stack_a;
+		repeat = a;
 		while (repeat)
 		{
 			if (check != repeat)

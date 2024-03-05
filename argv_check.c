@@ -6,17 +6,10 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/03 01:01:08 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/05 03:45:35 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-static bool	check_int(long long number)
-{
-	if (number <= INT_MAX && number >= INT_MIN)
-		return (true);
-	return (false);
-}
 
 static bool	check_unquote(int argc, char **argv)
 {
@@ -35,6 +28,8 @@ static bool	check_unquote(int argc, char **argv)
 		}
 		while (ft_isdigit(argv[c][i]))
 			i++;
+		if (argv[c][i])
+			return (false);
 		c++;
 	}
 	return (true);
@@ -64,7 +59,7 @@ static bool	check_quote(char **argv)
 	return (true);
 }
 
-static bool	check_quote_int(char **argv, t_stack **stack_a)
+static bool	check_quote_int(char **argv)
 {
 	bool	result;
 	char	**splits;
@@ -74,21 +69,15 @@ static bool	check_quote_int(char **argv, t_stack **stack_a)
 	splits = ft_split(argv[1], ' ');
 	i = 0;
 	while (result && splits[i])
-		result = check_int(ft_atol(splits[i++]));
-	if (result)
 	{
-		i = 0;
-		while (splits[i])
-			create_stack(stack_a, ft_atol(splits[i++]));
-	}
-	i = 0;
-	while (splits[i])
+		result = check_int(ft_atol(splits[i]));
 		free(splits[i++]);
+	}
 	free(splits);
 	return (result);
 }
 
-bool	argv_check(int argc, char **argv, t_stack **node)
+bool	argv_check(int argc, char **argv)
 {
 	bool	result;
 	int		i;
@@ -98,7 +87,7 @@ bool	argv_check(int argc, char **argv, t_stack **node)
 	{
 		result = check_quote(argv);
 		if (result)
-			result = check_quote_int(argv, node);
+			result = check_quote_int(argv);
 	}
 	else if (argc > 2)
 	{
@@ -107,7 +96,5 @@ bool	argv_check(int argc, char **argv, t_stack **node)
 			while (argc > i && result)
 				result = check_int(ft_atol(argv[i++]));
 	}
-	if (result == false)
-		write(2, "Error argv_check\n", 17);
 	return (result);
 }

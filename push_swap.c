@@ -6,45 +6,54 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/03 00:37:26 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/05 03:52:21 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static bool	input_check(int argc, char **argv, t_stack **stack_a)
+static bool	input_check(int argc, char **argv, t_stack **a)
 {
-	int	i;
+	int		i;
+	char	**nums;
 
-	i = 1;
-	if (argv_check(argc, argv, stack_a))
+	if (argv_check(argc, argv))
 	{
 		if (argc > 2)
+			create_stack(a, argv, 1);
+		else if (argc == 2)
 		{
-			while (argc > i)
-				create_stack(stack_a, ft_atol(argv[i++]));
+			nums = ft_split(argv[1], ' ');
+			create_stack(a, nums, 0);
+			i = 0;
+			while (nums[i])
+				free(nums[i++]);
+			free(nums);
 		}
+		if (num_repeat(*a) || stack_size(*a) < 3)
+		{
+			free_stack(a);
+			return (false);
+		}
+		return (true);
 	}
-	if (numb_repeat(*stack_a))
-	{
-		write(2, "Error\n", 6);
-		return (false);
-	}
-	return (true);
+	return (false);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	**stack_a;
+	t_stack	**a;
 
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-	stack_a = (t_stack **)malloc(sizeof(t_stack));
-	if (stack_a == NULL)
+	a = (t_stack **)malloc(sizeof(t_stack));
+	if (a == NULL)
 		return (2);
-	*stack_a = NULL;
-	if (input_check(argc, argv, stack_a))
-		write(1, "[TRUE]\n", 7);
-	free_stack(stack_a);
-	free(stack_a);
+	if (input_check(argc, argv, a))
+	{
+		sort_algo(a);
+		free_stack(a);
+	}
+	else
+		write(2, "Error\n", 6);
 	return (0);
 }
