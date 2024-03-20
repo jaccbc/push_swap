@@ -6,12 +6,12 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:46:24 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/05 03:46:39 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/17 04:12:28 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-t_stack	*create_node(int n)
+t_stack	*create_node(int nbr)
 {
 	t_stack	*new;
 
@@ -20,7 +20,7 @@ t_stack	*create_node(int n)
 	{
 		new->prev = NULL;
 		new->next = NULL;
-		new->numb = n;
+		new->numb = nbr;
 	}
 	return (new);
 }
@@ -34,9 +34,9 @@ t_stack	*last_node(t_stack *node)
 	return (node);
 }
 
-size_t	stack_size(t_stack *node)
+unsigned int	stack_size(t_stack *node)
 {
-	size_t	size;
+	unsigned int	size;
 
 	size = 0;
 	while (node)
@@ -55,23 +55,27 @@ void	free_stack(t_stack **node)
 	{
 		linx = *node;
 		*node = (*node)->next;
+		printf("[DEBUGGING][FREE_STACK][%p]=[%i] prev=[%p] next=[%p]\n",
+			linx, linx->numb, linx->prev, linx->next);
 		free(linx);
+		linx = NULL;
 	}
-	free(node);
 }
 
-void	create_stack(t_stack **node, char **nums, int i)
+void	create_stack(t_stack **a, char **nbr, unsigned int i)
 {
 	t_stack	*new;
 	t_stack	*last;
 
-	last = create_node(ft_atoi(nums[i++]));
+	if (*nbr == NULL)
+		return ;
+	last = create_node(ft_atoi(nbr[i++]));
 	if (last)
 	{
-		*node = last;
-		while (nums[i])
+		*a = last;
+		while (nbr[i])
 		{
-			new = create_node(ft_atoi(nums[i++]));
+			new = create_node(ft_atoi(nbr[i++]));
 			if (new)
 			{
 				last->next = new;

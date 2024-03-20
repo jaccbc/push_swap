@@ -6,38 +6,27 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:53:25 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/05 03:44:53 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:25:04 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	sort_3(t_stack **a)
+static void	sort_plus(t_stack **a)
 {
-	t_stack	*mid;
+	t_stack	**b;
 
-	mid = (*a)->next;
-	if (mid->numb > mid->prev->numb)
-	{
-		if (mid->prev->numb < mid->next->numb)
-		{
-			sa(a);
-			ra(a);
-		}
-		else
-			rra(a);
-	}
-	else if (mid->prev->numb > mid->next->numb)
-	{
-		if (mid->numb > mid->next->numb)
-		{
-			ra(a);
-			sa(a);
-		}
-		else
-			ra(a);
-	}
-	else
-		sa(a);
+	b = malloc(sizeof(t_stack));
+	if (b == NULL)
+		return ;
+	*b = NULL;
+	while (stack_size(*b) != 3)
+		pb(a, b);
+	sort_3b(b);
+	while (stack_size(*a))
+		sort_2b(a, b);
+	while (stack_size(*b))
+		pa(b, a);
+	free(b);
 }
 
 void	sort_algo(t_stack **a)
@@ -46,4 +35,6 @@ void	sort_algo(t_stack **a)
 		return ;
 	if (stack_size(*a) == 3)
 		sort_3(a);
+	else
+		sort_plus(a);
 }

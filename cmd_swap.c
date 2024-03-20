@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 10:08:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/02/23 20:57:51 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/15 01:18:13 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -15,15 +15,16 @@ static void	cmd_swap(t_stack **node)
 {
 	t_stack	*linx;
 
-	if (!(*node) || !(*node)->next)
+	if (node == NULL || *node == NULL || stack_size(*node) < 2)
 		return ;
-	linx = (*node)->next->next;
-	(*node)->next->next = *node;
-	(*node)->prev = (*node)->next;
-	linx->prev = *node;
-	(*node)->next = linx;
-	*node = (*node)->prev;
-	(*node)->prev = NULL;
+	linx = (*node)->next;
+	(*node)->next = linx->next;
+	(*node)->prev = linx;
+	if (linx->next)
+		linx->next->prev = *node;
+	linx->next = *node;
+	linx->prev = NULL;
+	*node = linx;
 }
 
 void	sa(t_stack **node)

@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/05 03:45:35 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/20 04:28:32 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -70,7 +70,7 @@ static bool	check_quote_int(char **argv)
 	i = 0;
 	while (result && splits[i])
 	{
-		result = check_int(ft_atol(splits[i]));
+		result = int_check(ft_atol(splits[i]));
 		free(splits[i++]);
 	}
 	free(splits);
@@ -94,7 +94,7 @@ bool	argv_check(int argc, char **argv)
 		result = check_unquote(argc, argv);
 		if (result)
 			while (argc > i && result)
-				result = check_int(ft_atol(argv[i++]));
+				result = int_check(ft_atol(argv[i++]));
 	}
 	return (result);
 }

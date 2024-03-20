@@ -6,23 +6,23 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:21:01 by joandre-          #+#    #+#             */
-/*   Updated: 2024/02/23 20:50:44 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/08 22:59:09 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 static void	cmd_reverse(t_stack **node)
 {
-	t_stack	*linx;
+	t_stack	*last;
 
-	if (!(*node))
+	if (node == NULL || *node == NULL || stack_size(*node) < 2)
 		return ;
-	linx = last_node(*node);
-	linx->prev->next = NULL;
-	linx->prev = NULL;
-	linx->next = *node;
-	(*node)->prev = linx;
-	*node = linx;
+	last = last_node(*node);
+	last->prev->next = NULL;
+	last->prev = NULL;
+	last->next = *node;
+	(*node)->prev = last;
+	*node = last;
 }
 
 void	rra(t_stack **node)

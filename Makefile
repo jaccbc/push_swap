@@ -6,16 +6,17 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/18 21:42:53 by joandre-          #+#    #+#              #
-#    Updated: 2024/03/04 23:18:13 by joandre-         ###   ########.fr        #
+#    Updated: 2024/03/20 04:32:59 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+.SILENT:
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 LIBFT = Libft/libft.a
-SRC = stack_utils.c number_utils.c cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c \
-	  argv_check.c sort_utils.c sort_algo.c push_swap.c
+SRC = cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c \
+	  argv_check.c stack_utils.c numb_utils.c index_utils.c sort_utils.c \
+	  sort_control.c sort_algo.c push_swap.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
