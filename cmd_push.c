@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:57:50 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/15 01:10:31 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:35:10 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -21,7 +21,8 @@ static void	cmd_push(t_stack **src, t_stack **dst)
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
-	linx->prev = NULL;
+	if (linx)
+		linx->prev = NULL;
 	if (*dst == NULL)
 	{
 		*dst = linx;
@@ -37,7 +38,7 @@ static void	cmd_push(t_stack **src, t_stack **dst)
 
 void	pa(t_stack **b, t_stack **a)
 {
-	if (!(*b))
+	if (*b == NULL)
 		return ;
 	cmd_push(b, a);
 	write(1, "pa\n", 3);
@@ -45,7 +46,7 @@ void	pa(t_stack **b, t_stack **a)
 
 void	pb(t_stack **a, t_stack **b)
 {
-	if (!(*a))
+	if (*a == NULL)
 		return ;
 	cmd_push(a, b);
 	write(1, "pb\n", 3);

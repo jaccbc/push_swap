@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/17 05:00:03 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/02 03:27:30 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -29,9 +29,9 @@ static bool	input_check(int argc, char **argv, t_stack **a)
 				free(nbr[i++]);
 			free(nbr);
 		}
-		if (numb_repeat(*a) || stack_size(*a) < 3)
+		if (int_repeat(*a) || stack_size(*a) < 3)
 		{
-			free_stack(a);
+			free_stack(*a);
 			return (false);
 		}
 		return (true);
@@ -51,8 +51,7 @@ int	main(int argc, char **argv)
 	if (input_check(argc, argv, a))
 	{
 		sort_algo(a);
-		printf("[DEBUGGING][FREE_STACK A]\n");
-		free_stack(a);
+		free_stack(*a);
 	}
 	else
 		write(2, "Error\n", 6);

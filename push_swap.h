@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:57:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/20 04:31:34 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/02 03:36:48 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,33 @@ void			rr(t_stack **a, t_stack **b);
 void			rra(t_stack **a);
 void			rrb(t_stack **b);
 void			rrr(t_stack **a, t_stack **b);
-t_stack			*create_node(int nbr);
-t_stack			*last_node(t_stack *node);
-unsigned int	stack_size(t_stack *node);
-void			create_stack(t_stack **a, char **nbr, unsigned int i);
-void			free_stack(t_stack **node);
-bool			int_check(long long nbr);
-long long		ft_atol(char *nbr);
-bool			numb_repeat(t_stack *a);
+t_stack			*create_node(int n);
+t_stack			*last_node(t_stack *a);
+unsigned int	stack_size(t_stack *a);
+void			free_stack(t_stack *a);
+void			create_stack(t_stack **a, char **n, unsigned int i);
+bool			int_check(long long n);
+bool			int_repeat(t_stack *a);
+long long		ft_atol(char *n);
+int				max(t_stack *a);
+int				min(t_stack *a);
 bool			argv_check(int argc, char **argv);
-unsigned int	index_numb(t_stack *a, int nbr);
-unsigned int	index_target(t_stack *b, int nbr);
-unsigned int	cheap_index(t_stack *a, t_stack *b);
-void			sort_reverse(unsigned int i, unsigned int t,
-					t_stack **a, t_stack **b);
-void			sort_rotate(unsigned int i, unsigned int t,
-					t_stack **a, t_stack **b);
-void			sort_revrotate(unsigned int i, unsigned int t,
-					t_stack **a, t_stack **b);
-void			sort_rotreverse(unsigned int i, unsigned int t,
-					t_stack **a, t_stack **b);
-bool			sort_check(t_stack *a);
-void			sort_3(t_stack **a);
-void			sort_3b(t_stack **b);
-void			sort_2b(t_stack **a, t_stack **b);
+unsigned int	target_a(t_stack *a, int n);
+unsigned int	target_b(t_stack *b, int n);
+unsigned int	index_numb(t_stack *a, int n);
+int				numb(t_stack *a, unsigned int i);
+unsigned int	calc_a2b_reverse(t_stack *a, t_stack *b, int n);
+unsigned int	calc_a2b_rotate(t_stack *a, t_stack *b, int n);
+unsigned int	calc_a2b_rrotate(t_stack *a, t_stack *b, int n);
+unsigned int	calc_a2b_rreverse(t_stack *a, t_stack *b, int n);
+int				cheap_a(t_stack *a, t_stack *b);
+unsigned int	calc_b2a_reverse(t_stack *a, t_stack *b, int n);
+unsigned int	calc_b2a_rotate(t_stack *a, t_stack *b, int n);
+unsigned int	calc_b2a_rrotate(t_stack *a, t_stack *b, int n);
+unsigned int	calc_b2a_rreverse(t_stack *a, t_stack *b, int n);
+int				cheap_b(t_stack *a, t_stack *b);
+void			sort_a(t_stack **a, t_stack **b);
+void			sort_b(t_stack **a, t_stack **b);
 void			sort_algo(t_stack **a);
-
+void			debug_stack(t_stack *a, t_stack *b);
 #endif

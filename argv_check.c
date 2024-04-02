@@ -6,18 +6,18 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/20 04:28:32 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:03:35 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 static bool	check_unquote(int argc, char **argv)
 {
-	int	c;
-	int	i;
+	unsigned int	c;
+	unsigned int	i;
 
 	c = 1;
-	while (c < argc)
+	while (c < (unsigned int)argc)
 	{
 		i = 0;
 		if (argv[c][i] == '-')
@@ -37,7 +37,7 @@ static bool	check_unquote(int argc, char **argv)
 
 static bool	check_quote(char **argv)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (argv[1][i])
@@ -61,9 +61,9 @@ static bool	check_quote(char **argv)
 
 static bool	check_quote_int(char **argv)
 {
-	bool	result;
-	char	**splits;
-	size_t	i;
+	bool			result;
+	char			**splits;
+	unsigned int	i;
 
 	result = true;
 	splits = ft_split(argv[1], ' ');
@@ -79,8 +79,8 @@ static bool	check_quote_int(char **argv)
 
 bool	argv_check(int argc, char **argv)
 {
-	bool	result;
-	int		i;
+	unsigned int	i;
+	bool			result;
 
 	i = 1;
 	if (argc == 2)
@@ -93,7 +93,7 @@ bool	argv_check(int argc, char **argv)
 	{
 		result = check_unquote(argc, argv);
 		if (result)
-			while (argc > i && result)
+			while ((unsigned int)argc > i && result)
 				result = int_check(ft_atol(argv[i++]));
 	}
 	return (result);
