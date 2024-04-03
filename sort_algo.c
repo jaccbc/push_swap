@@ -6,18 +6,18 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:53:25 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 03:40:15 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:11:50 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static bool	sort_check(t_stack *check)
+bool	sort_check(t_stack *a)
 {
-	while (check->next)
+	while (a->next)
 	{
-		if (check->numb > check->next->numb)
+		if (a->numb > a->next->numb)
 			return (false);
-		check = check->next;
+		a = a->next;
 	}
 	return (true);
 }

@@ -6,14 +6,14 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:57:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 03:36:48 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:18:26 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "Libft/libft.h"
+# include "libft/libft.h"
 # include <stdbool.h>
 # include <limits.h>
 
@@ -62,6 +62,7 @@ unsigned int	calc_b2a_rreverse(t_stack *a, t_stack *b, int n);
 int				cheap_b(t_stack *a, t_stack *b);
 void			sort_a(t_stack **a, t_stack **b);
 void			sort_b(t_stack **a, t_stack **b);
+bool			sort_check(t_stack *a);
 void			sort_algo(t_stack **a);
 void			debug_stack(t_stack *a, t_stack *b);
 #endif
