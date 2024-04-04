@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 04:02:35 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/03 01:06:00 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/04 02:23:33 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker.h"
@@ -77,14 +77,14 @@ static char	*parse_inst(char *inst)
 	ft_bzero((char *)inst, 5);
 	ft_bzero((char *)c, 1);
 	i = 0;
-	r = 1;
+	r = read(0, c, 1);
 	while (r)
 	{
-		r = read(0, c, 1);
 		inst[i] = c[0];
 		if (inst[i] == '\n' || i == '4')
 			break ;
 		++i;
+		r = read(0, c, 1);
 	}
 	if (r == 0)
 		return (NULL);
@@ -111,6 +111,7 @@ static bool	get_inst(t_stack **a)
 	if (stack_size(*b))
 	{
 		free_stack(*b);
+		free(b);
 		write(2, "Error\n", 6);
 		return (false);
 	}
@@ -136,8 +137,8 @@ int	main(int argc, char **argv)
 			else
 				write(1, "KO\n", 3);
 		}
+		free_stack(*a);
 	}
-	free_stack(*a);
 	free(a);
 	return (0);
 }
