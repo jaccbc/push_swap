@@ -6,7 +6,7 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/18 21:42:53 by joandre-          #+#    #+#              #
-#    Updated: 2024/04/04 03:00:30 by joandre-         ###   ########.fr        #
+#    Updated: 2024/04/05 13:33:38 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .SILENT:
@@ -17,7 +17,7 @@ NAME = push_swap
 LIBFT = libft/libft.a
 SRC = argv_check.c stack_utils.c numb_utils.c index_utils.c calc_a.c calc_b.c \
 	  cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c sort_a.c sort_b.c sort_algo.c
-PSWAP_SRC = push_swap.c debug.c
+PSWAP_SRC = push_swap.c
 BONUS_SRC = bonus/checker.c bonus/ccmd_push.c bonus/ccmd_reverse.c \
 			bonus/ccmd_rotate.c bonus/ccmd_swap.c
 OBJ = $(SRC:.c=.o)
