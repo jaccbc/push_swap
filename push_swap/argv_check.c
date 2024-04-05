@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/03/20 18:03:35 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:54:19 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -83,6 +83,7 @@ bool	argv_check(int argc, char **argv)
 	bool			result;
 
 	i = 1;
+	result = false;
 	if (argc == 2)
 	{
 		result = check_quote(argv);
