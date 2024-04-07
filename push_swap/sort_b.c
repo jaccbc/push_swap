@@ -6,47 +6,47 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 02:26:14 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 01:23:34 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:15:11 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 static void	reverse(t_stack **a, t_stack **b, int n)
 {
-	while (index_numb(*a, n) != 0 && target_b(*b, n) != 0)
+	while (index_numb(*a, n) && target_b(*b, n))
 		rrr(a, b);
-	while (index_numb (*a, n) != 0)
+	while (index_numb (*a, n))
 		rra(a);
-	while (target_b(*b, n) != 0)
+	while (target_b(*b, n))
 		rrb(b);
 	pb(a, b);
 }
 
 static void	rotate(t_stack **a, t_stack **b, int n)
 {
-	while (index_numb(*a, n) != 0 && target_b(*b, n) != 0)
+	while (index_numb(*a, n) && target_b(*b, n))
 		rr(a, b);
-	while (index_numb(*a, n) != 0)
+	while (index_numb(*a, n))
 		ra(a);
-	while (target_b(*b, n) != 0)
+	while (target_b(*b, n))
 		rb(b);
 	pb(a, b);
 }
 
 static void	rrotate(t_stack **a, t_stack **b, int n)
 {
-	while (index_numb(*a, n) != 0)
+	while (index_numb(*a, n))
 		rra(a);
-	while (target_b(*b, n) != 0)
+	while (target_b(*b, n))
 		rb(b);
 	pb(a, b);
 }
 
 static void	rreverse(t_stack **a, t_stack **b, int n)
 {
-	while (index_numb(*a, n) != 0)
+	while (index_numb(*a, n))
 		ra(a);
-	while (target_b(*b, n) != 0)
+	while (target_b(*b, n))
 		rrb(b);
 	pb(a, b);
 }
