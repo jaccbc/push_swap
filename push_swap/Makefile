@@ -6,7 +6,7 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/18 21:42:53 by joandre-          #+#    #+#              #
-#    Updated: 2024/04/05 13:33:38 by joandre-         ###   ########.fr        #
+#    Updated: 2024/04/07 18:39:08 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .SILENT:
@@ -32,7 +32,7 @@ $(LIBFT):
 		make -s -C ./libft
 		make clean -s -C ./libft
 
-bonus: $(NAME) $(LIBFT) $(OBJ) $(BONUS_OBJ)
+bonus: $(LIBFT) $(OBJ) $(BONUS_OBJ)
 		$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(BONUS_OBJ) -o checker -L ./libft -lft
 
 clean:
