@@ -6,21 +6,27 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 22:03:03 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:39:15 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static bool	throw_result(unsigned int i, int b, int argc)
+static bool	check_split(char *s)
 {
-	if (i && b)
-	{
-		write(2, "Error\n", 6);
-		return (true);
-	}
-	else if (argc == 2 && i == 1)
-		return (true);
-	return (false);
+	unsigned int	i;
+
+	i = 0;
+	if (s[0] == '\0')
+		return (false);
+	if (s[i] == '-' || s[i] == '+')
+		++i;
+	if (s[i] == '\0')
+		return (false);
+	while (ft_isdigit(s[i]))
+		++i;
+	if (s[i])
+		return (false);
+	return (true);
 }
 
 static bool	just_one(int argc, char **argv)
@@ -30,20 +36,23 @@ static bool	just_one(int argc, char **argv)
 	char			**splits;
 
 	b = 0;
-	i = 0;
 	if (argv[1][0] == '\0')
 		return (false);
 	splits = ft_split(argv[1], ' ');
-	while (splits[0][i] && (splits[0][i] == '-' || splits[0][i] == '+'
-			|| ft_isdigit(splits[0][i])))
-		++i;
-	if (splits[0][i] || !int_check(ft_atol(splits[0])))
+	if (!check_split(splits[0]) || !int_check(ft_atol(splits[0])))
 		b = 1;
 	i = 0;
 	while (splits[i])
 		free(splits[i++]);
 	free(splits);
-	return (throw_result(i, b, argc));
+	if (i && b)
+	{
+		write(2, "Error\n", 6);
+		return (true);
+	}
+	else if (argc == 2 && i == 1)
+		return (true);
+	return (false);
 }
 
 static bool	input_check(int argc, char **argv, t_stack **a)
