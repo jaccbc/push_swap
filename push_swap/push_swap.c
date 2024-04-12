@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 21:52:51 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:03:03 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -15,7 +15,7 @@ static bool	throw_result(unsigned int i, int b, int argc)
 {
 	if (i && b)
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		return (true);
 	}
 	else if (argc == 2 && i == 1)
