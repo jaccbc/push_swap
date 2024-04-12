@@ -6,7 +6,11 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/18 21:42:53 by joandre-          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/04/07 18:39:08 by joandre-         ###   ########.fr        #
+=======
+#    Updated: 2024/04/11 17:40:21 by joandre-         ###   ########.fr        #
+>>>>>>> acf36b0 (Fix for basic input errors plus addition of new program feature to reveive both quoted and unquoted input at the same time.)
 #                                                                              #
 # **************************************************************************** #
 .SILENT:
@@ -15,8 +19,9 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 LIBFT = libft/libft.a
-SRC = argv_check.c stack_utils.c numb_utils.c index_utils.c calc_a.c calc_b.c \
-	  cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c sort_a.c sort_b.c sort_algo.c
+SRC = argv_check.c argv_parse.c stack_utils.c numb_utils.c index_utils.c \
+	  calc_a.c calc_b.c cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c \
+	  sort_a.c sort_b.c sort_algo.c
 PSWAP_SRC = push_swap.c
 BONUS_SRC = bonus/checker.c bonus/ccmd_push.c bonus/ccmd_reverse.c \
 			bonus/ccmd_rotate.c bonus/ccmd_swap.c

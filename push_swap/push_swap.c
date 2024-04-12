@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 03:27:30 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 02:10:09 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,7 +14,7 @@
 static bool	input_check(int argc, char **argv, t_stack **a)
 {
 	int		i;
-	char	**nbr;
+	char	**n;
 
 	if (argv_check(argc, argv))
 	{
@@ -22,14 +22,14 @@ static bool	input_check(int argc, char **argv, t_stack **a)
 			create_stack(a, argv, 1);
 		else if (argc == 2)
 		{
-			nbr = ft_split(argv[1], ' ');
-			create_stack(a, nbr, 0);
+			n = ft_split(argv[1], ' ');
+			create_stack(a, n, 0);
 			i = 0;
-			while (nbr[i])
-				free(nbr[i++]);
-			free(nbr);
+			while (n[i])
+				free(n[i++]);
+			free(n);
 		}
-		if (int_repeat(*a) || stack_size(*a) < 3)
+		if (int_repeat(*a))
 		{
 			free_stack(*a);
 			return (false);
@@ -48,9 +48,13 @@ int	main(int argc, char **argv)
 	a = malloc(sizeof(t_stack));
 	if (a == NULL)
 		return (2);
+	*a = NULL;
 	if (input_check(argc, argv, a))
 	{
-		sort_algo(a);
+		if (stack_size(*a) == 2 && !sort_check(*a))
+			sa(a);
+		else
+			sort_algo(a);
 		free_stack(*a);
 	}
 	else

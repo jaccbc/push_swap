@@ -6,31 +6,34 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/05 12:54:19 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:37:22 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 static bool	check_unquote(int argc, char **argv)
 {
-	unsigned int	c;
+	int				c;
 	unsigned int	i;
 
 	c = 1;
-	while (c < (unsigned int)argc)
+	i = 0;
+	while (c < argc)
 	{
-		i = 0;
-		if (argv[c][i] == '-')
-		{
-			i++;
-			if (argv[c][i] == '0')
-				return (false);
-		}
-		while (ft_isdigit(argv[c][i]))
-			i++;
-		if (argv[c][i])
+		if (argv[c][0] == '\0')
 			return (false);
-		c++;
+		if (argv[c][i] == '-' || argv[c][i] == '+')
+			++i;
+		while (ft_isdigit(argv[c][i]))
+			++i;
+		if (argv[c][i] == ' ')
+		{
+			++i;
+			continue ;
+		}
+		if (argv[c++][i])
+			return (false);
+		i = 0;
 	}
 	return (true);
 }
@@ -48,9 +51,12 @@ static bool	check_quote(char **argv)
 				return (false);
 		}
 		while (ft_isdigit(argv[1][i]))
-			i++;
+			++i;
 		if (argv[1][i] == ' ')
-			i++;
+		{
+			++i;
+			continue ;
+		}
 		else
 			break ;
 	}
@@ -77,25 +83,37 @@ static bool	check_quote_int(char **argv)
 	return (result);
 }
 
-bool	argv_check(int argc, char **argv)
+static bool	argc_plus2(int argc, char **argv)
 {
-	unsigned int	i;
-	bool			result;
+	int		i;
+	bool	result;
 
 	i = 1;
-	result = false;
+	result = true;
+	if (check_unquote(argc, argv))
+	{
+		while (argc > i && result)
+		{
+			if (need_parse(argv[i]))
+			{
+				if (!check_parse(argv[i++]))
+					return (false);
+			}
+			else
+				result = int_check(ft_atol(argv[i++]));
+		}
+	}
+	else
+		return (false);
+	return (result);
+}
+
+bool	argv_check(int argc, char **argv)
+{
 	if (argc == 2)
 	{
-		result = check_quote(argv);
-		if (result)
-			result = check_quote_int(argv);
+		if (check_quote(argv))
+			return (check_quote_int(argv));
 	}
-	else if (argc > 2)
-	{
-		result = check_unquote(argc, argv);
-		if (result)
-			while ((unsigned int)argc > i && result)
-				result = int_check(ft_atol(argv[i++]));
-	}
-	return (result);
+	return (argc_plus2(argc, argv));
 }

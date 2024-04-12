@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:57:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 18:18:26 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 00:22:50 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ bool			int_repeat(t_stack *a);
 long long		ft_atol(char *n);
 int				max(t_stack *a);
 int				min(t_stack *a);
+bool			need_parse(char *s);
+bool			check_parse(char *s);
+void			parse_2stack(t_stack **a, char *s);
 bool			argv_check(int argc, char **argv);
 unsigned int	target_a(t_stack *a, int n);
 unsigned int	target_b(t_stack *b, int n);
