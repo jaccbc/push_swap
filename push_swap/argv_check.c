@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 15:37:22 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:40:37 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -110,6 +110,8 @@ static bool	argc_plus2(int argc, char **argv)
 
 bool	argv_check(int argc, char **argv)
 {
+	if (argv[1][0] == '\0')
+		return (false);
 	if (argc == 2)
 	{
 		if (check_quote(argv))
