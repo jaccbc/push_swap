@@ -6,12 +6,24 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 17:55:00 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:52:51 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static bool	just_one(char **argv)
+static bool	throw_result(unsigned int i, int b, int argc)
+{
+	if (i && b)
+	{
+		write(1, "Error\n", 6);
+		return (true);
+	}
+	else if (argc == 2 && i == 1)
+		return (true);
+	return (false);
+}
+
+static bool	just_one(int argc, char **argv)
 {
 	unsigned int	i;
 	int				b;
@@ -25,18 +37,13 @@ static bool	just_one(char **argv)
 	while (splits[0][i] && (splits[0][i] == '-' || splits[0][i] == '+'
 			|| ft_isdigit(splits[0][i])))
 		++i;
-	if (splits[0][i])
-	{
+	if (splits[0][i] || !int_check(ft_atol(splits[0])))
 		b = 1;
-		write(1, "Error\n", 6);
-	}
 	i = 0;
 	while (splits[i])
 		free(splits[i++]);
 	free(splits);
-	if (i == 1 || b)
-		return (true);
-	return (false);
+	return (throw_result(i, b, argc));
 }
 
 static bool	input_check(int argc, char **argv, t_stack **a)
@@ -73,7 +80,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (1);
-	if (just_one(argv))
+	if (just_one(argc, argv))
 		return (1);
 	a = malloc(sizeof(t_stack));
 	if (a == NULL)

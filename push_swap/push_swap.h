@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:57:00 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 00:22:50 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:56:17 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void			sort_a(t_stack **a, t_stack **b);
 void			sort_b(t_stack **a, t_stack **b);
 bool			sort_check(t_stack *a);
 void			sort_algo(t_stack **a);
-void			debug_stack(t_stack *a, t_stack *b);
+
 #endif

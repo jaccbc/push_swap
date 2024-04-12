@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 08:46:24 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 15:36:09 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:32:34 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -79,8 +79,7 @@ void	create_stack(t_stack **a, char **n, unsigned int i)
 			else
 			{
 				*a = create_node(ft_atoi(n[i++]));
-				new = create_node(ft_atoi(n[i++]));
-				last = last_node(*a);
+				continue ;
 			}
 			new->prev = last;
 			last->next = new;
