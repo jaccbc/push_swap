@@ -5,14 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/18 21:42:53 by joandre-          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/04/07 18:39:08 by joandre-         ###   ########.fr        #
-=======
-#    Updated: 2024/04/11 17:40:21 by joandre-         ###   ########.fr        #
->>>>>>> acf36b0 (Fix for basic input errors plus addition of new program feature to reveive both quoted and unquoted input at the same time.)
+#    Created: 2024/04/12 16:19:38 by joandre-          #+#    #+#              #
+#    Updated: 2024/04/12 16:19:50 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 .SILENT:
 .PHONY: all bonus
 CC = cc
