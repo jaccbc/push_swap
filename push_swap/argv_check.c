@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 16:40:37 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:05:58 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -80,6 +80,8 @@ static bool	check_quote_int(char **argv)
 		free(splits[i++]);
 	}
 	free(splits);
+	if (i == 1)
+		return (2);
 	return (result);
 }
 

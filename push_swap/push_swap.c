@@ -6,10 +6,38 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 02:10:09 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:55:00 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+static bool	just_one(char **argv)
+{
+	unsigned int	i;
+	int				b;
+	char			**splits;
+
+	b = 0;
+	i = 0;
+	if (argv[1][0] == '\0')
+		return (false);
+	splits = ft_split(argv[1], ' ');
+	while (splits[0][i] && (splits[0][i] == '-' || splits[0][i] == '+'
+			|| ft_isdigit(splits[0][i])))
+		++i;
+	if (splits[0][i])
+	{
+		b = 1;
+		write(1, "Error\n", 6);
+	}
+	i = 0;
+	while (splits[i])
+		free(splits[i++]);
+	free(splits);
+	if (i == 1 || b)
+		return (true);
+	return (false);
+}
 
 static bool	input_check(int argc, char **argv, t_stack **a)
 {
@@ -43,7 +71,9 @@ int	main(int argc, char **argv)
 {
 	t_stack	**a;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (argc == 1)
+		return (1);
+	if (just_one(argv))
 		return (1);
 	a = malloc(sizeof(t_stack));
 	if (a == NULL)
