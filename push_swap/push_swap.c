@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 22:39:15 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/13 22:09:16 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,6 +14,7 @@
 static bool	check_split(char *s)
 {
 	unsigned int	i;
+	unsigned int	d;
 
 	i = 0;
 	if (s[0] == '\0')
@@ -22,7 +23,8 @@ static bool	check_split(char *s)
 		++i;
 	if (s[i] == '\0')
 		return (false);
-	while (ft_isdigit(s[i]))
+	d = 0;
+	while (ft_isdigit(s[i]) && d++ < 12)
 		++i;
 	if (s[i])
 		return (false);

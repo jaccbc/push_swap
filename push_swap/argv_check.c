@@ -6,66 +6,39 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/12 17:05:58 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/13 22:48:30 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static bool	check_unquote(int argc, char **argv)
+static bool	check_string(int argc, char **argv)
 {
 	int				c;
 	unsigned int	i;
+	unsigned int	d;
 
 	c = 1;
 	i = 0;
 	while (c < argc)
 	{
-		if (argv[c][0] == '\0')
+		if (argv[c][i] == '\0')
 			return (false);
 		if (argv[c][i] == '-' || argv[c][i] == '+')
+			if (argv[c][++i] == '\0' || ft_isdigit(argv[c][i]) == 0)
+				return (false);
+		d = 0;
+		while (ft_isdigit(argv[c][i]) && d++ < 11)
 			++i;
-		while (ft_isdigit(argv[c][i]))
-			++i;
-		if (argv[c][i] == ' ')
-		{
-			++i;
+		if (argv[c][i++] == ' ')
 			continue ;
-		}
-		if (argv[c++][i])
+		if (argv[c++][--i])
 			return (false);
 		i = 0;
 	}
 	return (true);
 }
 
-static bool	check_quote(char **argv)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (argv[1][i])
-	{
-		if (argv[1][i] == '-')
-		{
-			if (argv[1][++i] == '0')
-				return (false);
-		}
-		while (ft_isdigit(argv[1][i]))
-			++i;
-		if (argv[1][i] == ' ')
-		{
-			++i;
-			continue ;
-		}
-		else
-			break ;
-	}
-	if (argv[1][i])
-		return (false);
-	return (true);
-}
-
-static bool	check_quote_int(char **argv)
+static bool	check_string_int(char **argv)
 {
 	bool			result;
 	char			**splits;
@@ -80,8 +53,6 @@ static bool	check_quote_int(char **argv)
 		free(splits[i++]);
 	}
 	free(splits);
-	if (i == 1)
-		return (2);
 	return (result);
 }
 
@@ -92,7 +63,7 @@ static bool	argc_plus2(int argc, char **argv)
 
 	i = 1;
 	result = true;
-	if (check_unquote(argc, argv))
+	if (check_string(argc, argv))
 	{
 		while (argc > i && result)
 		{
@@ -116,8 +87,8 @@ bool	argv_check(int argc, char **argv)
 		return (false);
 	if (argc == 2)
 	{
-		if (check_quote(argv))
-			return (check_quote_int(argv));
+		if (check_string(argc, argv))
+			return (check_string_int(argv));
 	}
 	return (argc_plus2(argc, argv));
 }

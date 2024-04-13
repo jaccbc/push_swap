@@ -6,7 +6,7 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 16:19:38 by joandre-          #+#    #+#              #
-#    Updated: 2024/04/12 21:55:44 by joandre-         ###   ########.fr        #
+#    Updated: 2024/04/13 16:51:40 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC = argv_check.c argv_parse.c stack_utils.c numb_utils.c index_utils.c \
 	  sort_a.c sort_b.c sort_algo.c
 PSWAP_SRC = push_swap.c
 BONUS_SRC = bonus/checker.c bonus/ccmd_push.c bonus/ccmd_reverse.c \
-			bonus/ccmd_rotate.c bonus/ccmd_swap.c
+			bonus/ccmd_rotate.c bonus/ccmd_swap.c bonus/inst_utils.c
 OBJ = $(SRC:.c=.o)
 PSWAP_OBJ = $(PSWAP_SRC:.c=.o)
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
@@ -34,7 +34,9 @@ $(LIBFT):
 		make -s -C ./libft
 		make clean -s -C ./libft
 
-bonus: $(LIBFT) $(OBJ) $(BONUS_OBJ)
+bonus: checker
+
+checker: $(LIBFT) $(OBJ) $(BONUS_OBJ)
 		$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(BONUS_OBJ) -o checker -L ./libft -lft
 
 clean:

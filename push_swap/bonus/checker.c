@@ -6,15 +6,61 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 04:02:35 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/04 02:23:33 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/13 22:52:23 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker.h"
 
+static bool	check_split(char *s)
+{
+	unsigned int	i;
+	unsigned int	d;
+
+	i = 0;
+	if (s[0] == '\0')
+		return (false);
+	if (s[i] == '-' || s[i] == '+')
+		++i;
+	if (s[i] == '\0')
+		return (false);
+	d = 0;
+	while (ft_isdigit(s[i]) && d++ < 11)
+		++i;
+	if (s[i])
+		return (false);
+	return (true);
+}
+
+static bool	just_one(int argc, char **argv)
+{
+	unsigned int	i;
+	int				b;
+	char			**splits;
+
+	b = 0;
+	if (argv[1][0] == '\0')
+		return (false);
+	splits = ft_split(argv[1], ' ');
+	if (!check_split(splits[0]) || !int_check(ft_atol(splits[0])))
+		b = 1;
+	i = 0;
+	while (splits[i])
+		free(splits[i++]);
+	free(splits);
+	if (i && b)
+	{
+		write(2, "Error\n", 6);
+		return (true);
+	}
+	else if (argc == 2 && i == 1)
+		return (true);
+	return (false);
+}
+
 static bool	input_check(int argc, char **argv, t_stack **a)
 {
 	int		i;
-	char	**numb;
+	char	**n;
 
 	if (argv_check(argc, argv))
 	{
@@ -22,14 +68,14 @@ static bool	input_check(int argc, char **argv, t_stack **a)
 			create_stack(a, argv, 1);
 		else if (argc == 2)
 		{
-			numb = ft_split(argv[1], ' ');
-			create_stack(a, numb, 0);
+			n = ft_split(argv[1], ' ');
+			create_stack(a, n, 0);
 			i = 0;
-			while (numb[i])
-				free(numb[i++]);
-			free(numb);
+			while (n[i])
+				free(n[i++]);
+			free(n);
 		}
-		if (int_repeat(*a) || stack_size(*a) < 3)
+		if (int_repeat(*a))
 		{
 			free_stack(*a);
 			return (false);
@@ -39,95 +85,18 @@ static bool	input_check(int argc, char **argv, t_stack **a)
 	return (false);
 }
 
-static bool	exec_inst(t_stack **a, t_stack **b, char *i)
-{
-	if (i[0] == 's' && i[1] == 'a' && i[2] == '\n')
-		csa(a);
-	else if (i[0] == 's' && i[1] == 'b' && i[2] == '\n')
-		csb(b);
-	else if (i[0] == 's' && i[1] == 's' && i[2] == '\n')
-		css(a, b);
-	else if (i[0] == 'r' && i[1] == 'a' && i[2] == '\n')
-		cra(a);
-	else if (i[0] == 'r' && i[1] == 'b' && i[2] == '\n')
-		crb(b);
-	else if (i[0] == 'r' && i[1] == 'r' && i[2] == '\n')
-		crr(a, b);
-	else if (i[0] == 'p' && i[1] == 'a' && i[2] == '\n')
-		cpa(b, a);
-	else if (i[0] == 'p' && i[1] == 'b' && i[2] == '\n')
-		cpb(a, b);
-	else if (i[0] == 'r' && i[1] == 'r' && i[2] == 'a' && i[3] == '\n')
-		crra(a);
-	else if (i[0] == 'r' && i[1] == 'r' && i[2] == 'b' && i[3] == '\n')
-		crrb(b);
-	else if (i[0] == 'r' && i[1] == 'r' && i[2] == 'r' && i[3] == '\n')
-		crrr(a, b);
-	else
-		return (false);
-	return (true);
-}
-
-static char	*parse_inst(char *inst)
-{
-	char	c[1];
-	int		i;
-	int		r;
-
-	ft_bzero((char *)inst, 5);
-	ft_bzero((char *)c, 1);
-	i = 0;
-	r = read(0, c, 1);
-	while (r)
-	{
-		inst[i] = c[0];
-		if (inst[i] == '\n' || i == '4')
-			break ;
-		++i;
-		r = read(0, c, 1);
-	}
-	if (r == 0)
-		return (NULL);
-	return (inst);
-}
-
-static bool	get_inst(t_stack **a)
-{
-	t_stack	**b;
-	char	inst[5];
-	char	*cmd;
-
-	b = malloc(sizeof(t_stack));
-	if (b == NULL)
-		return (false);
-	*b = NULL;
-	cmd = parse_inst(inst);
-	while (cmd)
-	{
-		if (!exec_inst(a, b, cmd))
-			break ;
-		cmd = parse_inst(inst);
-	}
-	if (stack_size(*b))
-	{
-		free_stack(*b);
-		free(b);
-		write(2, "Error\n", 6);
-		return (false);
-	}
-	free(b);
-	return (true);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	**a;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (argc == 1)
+		return (1);
+	if (just_one(argc, argv))
 		return (1);
 	a = malloc(sizeof(t_stack));
 	if (a == NULL)
 		return (2);
+	*a = NULL;
 	if (input_check(argc, argv, a))
 	{
 		if (get_inst(a))
@@ -139,6 +108,8 @@ int	main(int argc, char **argv)
 		}
 		free_stack(*a);
 	}
+	else
+		write(2, "Error\n", 6);
 	free(a);
 	return (0);
 }
