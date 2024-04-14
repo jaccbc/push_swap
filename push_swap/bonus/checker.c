@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 04:02:35 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/13 22:52:23 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:27:04 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker.h"
@@ -31,7 +31,7 @@ static bool	check_split(char *s)
 	return (true);
 }
 
-static bool	just_one(int argc, char **argv)
+static bool	just_one(char **argv)
 {
 	unsigned int	i;
 	int				b;
@@ -52,8 +52,6 @@ static bool	just_one(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (true);
 	}
-	else if (argc == 2 && i == 1)
-		return (true);
 	return (false);
 }
 
@@ -90,12 +88,12 @@ int	main(int argc, char **argv)
 	t_stack	**a;
 
 	if (argc == 1)
-		return (1);
-	if (just_one(argc, argv))
+		return (0);
+	if (just_one(argv))
 		return (1);
 	a = malloc(sizeof(t_stack));
 	if (a == NULL)
-		return (2);
+		return (1);
 	*a = NULL;
 	if (input_check(argc, argv, a))
 	{

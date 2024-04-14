@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 07:40:17 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/13 22:09:16 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:27:28 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -90,12 +90,12 @@ int	main(int argc, char **argv)
 	t_stack	**a;
 
 	if (argc == 1)
-		return (1);
+		return (0);
 	if (just_one(argc, argv))
 		return (1);
 	a = malloc(sizeof(t_stack));
 	if (a == NULL)
-		return (2);
+		return (1);
 	*a = NULL;
 	if (input_check(argc, argv, a))
 	{
