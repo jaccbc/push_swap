@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 00:04:29 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/13 22:48:30 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/14 07:10:11 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -21,7 +21,7 @@ static bool	check_string(int argc, char **argv)
 	i = 0;
 	while (c < argc)
 	{
-		if (argv[c][i] == '\0')
+		if (argv[c][0] == '\0')
 			return (false);
 		if (argv[c][i] == '-' || argv[c][i] == '+')
 			if (argv[c][++i] == '\0' || ft_isdigit(argv[c][i]) == 0)
