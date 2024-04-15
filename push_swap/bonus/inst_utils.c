@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:02:41 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/14 10:37:08 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/15 09:18:05 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker.h"
@@ -59,12 +59,12 @@ char	*parse_inst(char *inst)
 		{
 			while (r)
 				r = read(0, c, 1);
-			break ;
+			return (inst);
 		}
 		++i;
 		r = read(0, c, 1);
 	}
-	if (r == 0)
+	if (r == 0 && inst[0] == '\0')
 		return (NULL);
 	return (inst);
 }
