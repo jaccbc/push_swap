@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:50:19 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 03:04:32 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/20 00:35:57 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -54,6 +54,8 @@ long long	ft_atol(char *a)
 	{
 		n = n * 10 + (*a - '0');
 		++a;
+		if (!int_check(n * x))
+			break ;
 	}
 	return (n * x);
 }

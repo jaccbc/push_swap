@@ -6,7 +6,7 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 16:19:38 by joandre-          #+#    #+#              #
-#    Updated: 2024/04/13 16:51:40 by joandre-         ###   ########.fr        #
+#    Updated: 2024/04/20 01:10:58 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 LIBFT = libft/libft.a
-SRC = argv_check.c argv_parse.c stack_utils.c numb_utils.c index_utils.c \
+SRC = argv_check.c stack_utils.c numb_utils.c index_utils.c \
 	  calc_a.c calc_b.c cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c \
 	  sort_a.c sort_b.c sort_algo.c
 PSWAP_SRC = push_swap.c

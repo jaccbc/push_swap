@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:53:25 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/02 17:11:50 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/20 01:40:35 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -75,7 +75,7 @@ void	sort_algo(t_stack **a)
 		sort_3(a);
 	else
 	{
-		b = malloc(sizeof(t_stack));
+		b = malloc(sizeof(t_stack *));
 		if (b == NULL)
 			return ;
 		*b = NULL;

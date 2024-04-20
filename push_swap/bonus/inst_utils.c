@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:02:41 by joandre-          #+#    #+#             */
-/*   Updated: 2024/04/15 09:18:05 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/04/20 02:32:58 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker.h"
@@ -92,7 +92,7 @@ bool	get_inst(t_stack **a)
 	char	*cmd;
 	int		f;
 
-	b = malloc(sizeof(t_stack));
+	b = malloc(sizeof(t_stack *));
 	if (b == NULL)
 		return (false);
 	*b = NULL;
