@@ -6,15 +6,15 @@
 #    By: joandre- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 16:19:38 by joandre-          #+#    #+#              #
-#    Updated: 2024/04/20 01:10:58 by joandre-         ###   ########.fr        #
+#    Updated: 2024/09/25 19:16:32 by joandre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.SILENT:
 .PHONY: all bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
+NAME_BONUS = checker
 LIBFT = libft/libft.a
 SRC = argv_check.c stack_utils.c numb_utils.c index_utils.c \
 	  calc_a.c calc_b.c cmd_push.c cmd_reverse.c cmd_rotate.c cmd_swap.c \
@@ -34,16 +34,16 @@ $(LIBFT):
 		make -s -C ./libft
 		make clean -s -C ./libft
 
-bonus: checker
+bonus: $(NAME_BONUS)
 
-checker: $(LIBFT) $(OBJ) $(BONUS_OBJ)
-		$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(BONUS_OBJ) -o checker -L ./libft -lft
+$(NAME_BONUS): $(LIBFT) $(OBJ) $(BONUS_OBJ)
+		$(CC) $(CFLAGS) $(LIBFT) $(OBJ) $(BONUS_OBJ) -o $(NAME_BONUS) -L ./libft -lft
 
 clean:
 		rm -rf $(OBJ) $(PSWAP_OBJ) $(BONUS_OBJ)
 
 fclean: clean
-		rm -rf $(NAME) checker
+		rm -rf $(NAME) $(NAME_BONUS)
 		make fclean -s -C ./libft
 
 re: fclean all
